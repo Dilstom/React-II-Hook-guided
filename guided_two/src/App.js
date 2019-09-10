@@ -5,7 +5,7 @@ import Modal from './Modal';
 
 function App() {
  const [buttonColor, setButtonColor] = useState('maroon');
-
+ const [modalOpen, setModalOpen] = useState(false);
  //  1st part without colors array
  //  const changeColor = () => {
  //   setButtonColor('blue');
@@ -15,6 +15,10 @@ function App() {
  const changeColor = colorsArray => {
   // pick any random color
   setButtonColor(colorsArray[Math.floor(Math.random() * colorsArray.length)]);
+ };
+
+ const handleModal = () => {
+  setModalOpen(!modalOpen);
  };
 
  return (
@@ -28,7 +32,8 @@ function App() {
     <Button changeColorProp={changeColor} color={buttonColor} favNum={42} />
     {/* <Button color="maroon" favNum={42} /> */}
     {/* <Button color="maroon" favNum={{ favNumber: 42 }} /> */}
-    <Modal />
+    {modalOpen ? <Modal handleModalProp={handleModal} /> : null}
+    <button onClick={handleModal}>Open Modal</button>
    </header>
   </div>
  );
